@@ -196,16 +196,21 @@ $(document).ready(function(){
 	/****** QUESTION 15 ***********/
 	//Write a program that prints the numbers from 1 to 100. But for multiples of three print "Foo" instead of the number and for the multiples of five print "Bar". For numbers which are multiples of both three and five print "FooBar"
 	document.getElementById('fizzbuzz_submit').onclick = function() {
-	for (var i=1; i <= 100; i++)
-	{
-    if (i % 15 == 0)
+	for (var i=1; i <= 100; i++) {
+    if (i % 15 == 0) {
         document.getElementById('fizzbuzz_display').innerHTML = ("FizzBuzz");
+		}
     else if (i % 3 == 0)
         document.getElementById('fizzbuzz_display').innerHTML = ("Fizz");
+		}
     else if (i % 5 == 0)
         document.getElementById('fizzbuzz_display').innerHTML = ("Buzz");
+		}
     else
         document.getElementById('fizzbuzz_display').innerHTML = (i);
-}
+		}
+	 }
+	}
+
 
 });
