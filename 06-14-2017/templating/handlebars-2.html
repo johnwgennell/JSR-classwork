@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Handlebars</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+  <script id="hello-world-template-2" type="text/x-handlebars-template">
+    <h1>{{securityOpening}}</h1>
+    <p>{{securityMessage}}</p>
+  </script>
+  <script>
+  $(document).ready(function(){
+              var source = $('#hello-world-template-2').html();
+              var template = Handlebars.compile(source);
+
+              var privacyStatement = { securityOpening: "This is a password protected page.", securityMessage: "The secure content herein cannot be shared with any outside sources."};
+
+              var compiledTemplate = template(privacyStatement);
+              $('body').append(compiledTemplate);
+          })
+  </script>
+</head>
+<body>
+
+</body>
+</html>
