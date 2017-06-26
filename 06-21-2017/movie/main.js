@@ -1,7 +1,7 @@
 // Lets create a movie app that will accept a search and return a list of results
 /*
 
-1) Accept a query from the user and get results. (All via AJAX... duhhhh)
+1) Accept a query from the user and get results. (All via AJAX)
 2) I want it to display the results by outputting the movie posters as image tags
 3) Upon interacting with the movie poster (click, mouseover, etc..) you should display 4 extra pieces
   of information about that movie. I don't care which
@@ -31,11 +31,23 @@ $(function() {
          console.log(data.Search);
          var movies = data.Search;
          for(var i=0; i<movies.length; i++) {
+
            var image = movies[i].Poster;
-           var $html = $('<a class="image" data-year="'+movies[i].Year+'" data-title="'+movies[i].Title+'" data-type="'+movies[i].Type+'" data-imdb_id="'+movies[i].Imbd_id+'"><img src="'+image+'"/></a>');
+           var $html = $('<a class="image" data-year="'+movies[i].Year+'" data-title="'+movies[i].Title+'" data-type="'+movies[i].Type+'"><img src="'+image+'"/></a>');
            $('body').append($html);
            }
      });
+     $.get("http://www.omdbapi.com/?i=" + movie_imdb_id)
+
+      .done( function( movie_data ) {
+
+        movie_details.html(
+          "<h3>" + movie_data.Title + " (" + movie_data.Year + ")</h3>" +
+          "<p><strong>Genre: </strong> " + movie_data.Genre + "</p>" +
+          "<p><strong>Director: </strong> " + movie_data.Director + "</p>" +
+          "<p><strong>Starring: </strong> " + movie_data.Actors + "</p>" +
+          "<p><strong>Released: </strong> " + movie_data.Released + "</p>" +
+          "<p><strong>Plot: </strong> " + movie_data.Plot + "</p>"
 
     });
      $('body').on('click','.image', function() {
@@ -43,7 +55,7 @@ $(function() {
         $('#year').html($(this).data('year'));
         // to fill below
         $('#type').html($(this).data('type'));
-        $('#imdb_id').html($(this).data('imdb_id'));
+
 
   });
 });
